@@ -1,0 +1,10 @@
+clf-data/
+saved_model_efficientnet/
+saved_model_mobilenet/
+model.p
+parking_lot_cnn_model.h5
+vids/
+*.png 
+*.h5
+*.p
+*.mp4
