@@ -1,36 +1,67 @@
-Parking Lot Monitoring System
+# 🚗 Parking Lot Monitoring System 🅿️
 
-Overview
+This project implements a **Parking Lot Monitoring System** using computer vision (CV) and machine learning (ML) techniques. The system detects vehicles in parking spaces, classifies their statuses (empty or occupied), and calculates the total count of available parking spots in real-time. It supports both image and video inputs.
 
-This project implements a Parking Lot Monitoring System using computer vision (CV) and machine learning (ML) techniques. The system detects vehicles in parking spaces, identifies their statuses (empty or occupied), and outputs the total count of available parking spots. The solution supports both image and video inputs. Additionally, the project includes a comparison of various machine learning models and neural network architectures, analyzing their performances and identifying the best approach for parking lot monitoring.
+Additionally, the project includes a comparative analysis of various machine learning models and neural network architectures, providing insights into their performance and suitability for parking lot monitoring.
 
-Features
+---
 
-Vehicle Detection: Detects vehicles in parking spots using bounding boxes.
-Status Classification: Identifies parking spots as empty or occupied based on whether vehicle detected.
-Total Count: Outputs the total number of available parking spots in real-time.
-Input Support: Works with both image and video inputs.
-*Model Comparisons: Evaluates multiple models and compares their performances.*
+## **Features**
 
-Limitations:
-Customized to one parking lot arrangement
+- **Vehicle Detection:** Detects vehicles in parking spots using bounding boxes.
+- **Status Classification:** Classifies parking spots as empty or occupied based on vehicle detection.
+- **Total Count:** Outputs the total number of available parking spots in real-time.
+- **Input Support:** Works seamlessly with both image and video inputs.
+- **Model Comparisons:** Evaluates multiple machine learning models and neural network architectures to identify the most efficient solution.
 
-DataSet: https://drive.google.com/drive/folders/1CjEFWihRqTLNUnYRwHXxGAVwSXF2k8QC
-mask image: using CVAT/labelmg (mark bboxes and get binary image)
+---
 
-Model Comparisons
+## **Limitations**
+- Customized for one specific parking lot arrangement.
 
-General: All the models gave really high accuracy scores probabl due to the clear distinction between the two catgories in the classification (MLP gave 100% accuracy score). Hence the best choice would be to implement a simple and lightweight model rather than those that could handle complex classification cases as that does not seem to be the problem here.
+---
 
-Logistic Regression: gave 99.6 % accuracy score, simple to implement and easy to understand the hyperparametrs 
-SVC: gave 99.92 % accuracy score, very effective for the dataset used, best combo of C and gamma chosen using gridsearch
-MLP: gave 100 % accuracy, multiple hidden layers to handle non-linearities
-CNN: gave 99.4 % accuracy, architecture used: 2 Conv, maxpooling, dense layers
+## **Dataset**
 
-Optmizations Used:
-Resized images to uniform dimensions (15x15 for ML model)
-Mask applied to extract parking spot regions
-Differences in mean pixel values used for motion-based detection (only those spots checked)
-Hyperparameter tuning using GridSearchCV for ML models
-Experimented with various CNN architectures and activation functions
-Skipped frames (step = 30) to optimize real-time performance for videos
+- The dataset can be downloaded [here](https://drive.google.com/drive/folders/1CjEFWihRqTLNUnYRwHXxGAVwSXF2k8QC).
+- **Mask Image:** Created using tools like CVAT or LabelImg to mark bounding boxes and generate a binary mask image for parking spots.
+
+---
+
+## **Model Comparisons**
+
+The project explores multiple models and their performances. Here are the results:
+
+| **Model**            | **Accuracy** | **Remarks**                                                                 |
+|-----------------------|--------------|------------------------------------------------------------------------------|
+| Logistic Regression   | 99.6%       | Simple to implement, easy to understand hyperparameters.                    |
+| Support Vector Classifier (SVC) | 99.92%      | Very effective for the dataset used; best combination of `C` and `gamma` achieved using GridSearchCV. |
+| Multi-Layer Perceptron (MLP)    | 100%        | Handles non-linearities with multiple hidden layers; may be overkill for this task. |
+| Convolutional Neural Network (CNN) | 99.4%       | Architecture: 2 Convolutional layers, MaxPooling, Dense layers; good performance. |
+
+**General Conclusion:**
+- All models achieved high accuracy due to the clear distinction between the two categories (empty and occupied).
+- A lightweight model (e.g., Logistic Regression or SVC) is recommended for deployment, as handling complex classification cases is unnecessary for this dataset.
+
+---
+
+## **Optimizations Used**
+
+1. **Preprocessing:**
+   - Resized images to uniform dimensions (15x15 for ML models).
+   - Applied a mask to extract parking spot regions from the input.
+
+2. **Motion-Based Detection:**
+   - Used differences in mean pixel values to detect motion in parking spots.
+   - Checked only affected spots, improving efficiency.
+
+3. **Hyperparameter Tuning:**
+   - Utilized GridSearchCV for optimizing hyperparameters in ML models (e.g., `C` and `gamma` for SVC).
+
+4. **CNN Architectures:**
+   - Experimented with various architectures and activation functions to maximize performance.
+
+5. **Real-Time Optimization:**
+   - Skipped frames (step = 30) for video inputs to enhance real-time performance.
+
+---
